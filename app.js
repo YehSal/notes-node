@@ -2,6 +2,7 @@ console.log('Starting app');
 
 const fs = require('fs');
 const os = require('os');
+const _ = require('lodash');
 const notes = require('./notes.js'); // Relative path
 
 var res = notes.addNote();
