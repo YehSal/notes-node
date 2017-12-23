@@ -10,7 +10,14 @@ const argv = yargs.argv;
 const command = argv._[0];
 
 if (command === 'add') {
-	notes.addNote(argv.title, argv.body);
+	var note = notes.addNote(argv.title, argv.body);
+	if (note) {
+		console.log('Note saved successfully!');
+		console.log('--');
+		console.log(`Title: ${note.title}`);
+	} else {
+		console.log('Note title taken');
+	}
 } else if (command === "list") {
 	notes.getAll();
 } else if (command === "remove") {
