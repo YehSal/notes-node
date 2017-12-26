@@ -1,5 +1,3 @@
-console.log('Starting app');
-
 const fs = require('fs');
 const _ = require('lodash');
 const yargs = require("yargs");
@@ -13,8 +11,7 @@ if (command === 'add') {
 	var note = notes.addNote(argv.title, argv.body);
 	if (note) {
 		console.log('Note saved successfully!');
-		console.log('--');
-		console.log(`Title: ${note.title}`);
+		notes.logNote(note);
 	} else {
 		console.log('Note title taken');
 	}
@@ -25,7 +22,13 @@ if (command === 'add') {
 	var message = noteRemoved ? 'Note was removed' : 'Note not found';
 	console.log(message);
 } else if (command === "read" ) {
-	notes.readNote(argv.title);
+	var note = notes.readNote(argv.title);
+	if (note) {
+		console.log('Note read successfully!');
+		notes.logNote(note);
+	} else {
+		console.log("Note doesn't exist");
+	}
 } else {
 	console.log('Command not recognized');
 }
